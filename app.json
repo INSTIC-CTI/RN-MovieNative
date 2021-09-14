@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "MovieNative",
+    "slug": "MovieNative",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "MovieNative"
+}
