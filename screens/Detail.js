@@ -1,23 +1,31 @@
 import React, { useState, useEffect } from "react";
-
 import {
   Text,
   Image,
   ScrollView,
   StyleSheet,
   Dimensions,
+  ActivityIndicator,
   View,
+  Modal,
+  Pressable,
 } from "react-native";
-import { getMovie } from "../services/services";
 
+import PlayButton from "../components/PlayButton";
+import { getMovie } from "../services/services";
+import Video from "../components/Video";
 import StarRating from "react-native-star-rating";
 import dateFormat from "dateformat";
+
 const placeholderImage = require("../assets/images/placeholder.png");
 const height = Dimensions.get("screen").height;
+
 const Detail = ({ route, navigation }) => {
+  const movieId = route.params.movieDetail.id;
+
   const [movieDetail, setDetail] = useState();
   const [loaded, setLoaded] = useState(false);
-  const movieId = route.params.movieDetail.id;
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     getMovie(movieId).then((movieData) => {
@@ -25,6 +33,11 @@ const Detail = ({ route, navigation }) => {
       setLoaded(true);
     });
   }, [movieId]);
+
+  const videoShown = () => {
+    setModalVisible(!modalVisible);
+  };
+
   return (
     <React.Fragment>
       {loaded && (
@@ -45,7 +58,7 @@ const Detail = ({ route, navigation }) => {
             />
             <View style={styles.container}>
               <View style={styles.playButton}>
-                {/* <PlayButton handlePress={videoShown} /> */}
+                <PlayButton handlePress={videoShown} />
               </View>
               <Text style={styles.movieTitle}>{movieDetail.title}</Text>
               {movieDetail.genres && (
@@ -73,8 +86,20 @@ const Detail = ({ route, navigation }) => {
               </Text>
             </View>
           </ScrollView>
+          <Modal
+            supportedOrientations={["portrait", "landscape"]}
+            animationType="slide"
+            visible={modalVisible}
+          >
+            <View style={styles.videoModal}>
+              <Video
+              onClose={videoShown}
+                />
+            </View>
+          </Modal>
         </View>
       )}
+      {!loaded && <ActivityIndicator size="large" />}
     </React.Fragment>
   );
 };
@@ -109,6 +134,16 @@ const styles = StyleSheet.create({
   },
   release: {
     fontWeight: "bold",
+  },
+  playButton: {
+    position: "absolute",
+    top: -25,
+    right: 20,
+  },
+  videoModal: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

@@ -12,6 +12,7 @@
     "axios": "^0.21.4",
     "dateformat": "^4.5.1",
     "expo": "~42.0.1",
+    "expo-av": "~9.2.3",
     "expo-splash-screen": "~0.11.2",
     "expo-status-bar": "~1.0.4",
     "expo-updates": "~0.8.2",
@@ -20,11 +21,15 @@
     "react-native": "0.63.4",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-image-slider-box": "^1.1.8",
+    "react-native-ionicons": "^4.x",
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
     "react-native-star-rating": "^1.1.0",
     "react-native-unimodules": "~0.14.5",
+    "react-native-vector-icons": "^8.1.0",
+    "react-native-video": "^5.1.1",
+    "react-native-video-controls": "^2.8.1",
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
