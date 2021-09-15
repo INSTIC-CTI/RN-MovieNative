@@ -11,6 +11,7 @@ import {
 import { getMovie } from "../services/services";
 
 import StarRating from "react-native-star-rating";
+import dateFormat from "dateformat";
 const placeholderImage = require("../assets/images/placeholder.png");
 const height = Dimensions.get("screen").height;
 const Detail = ({ route, navigation }) => {
@@ -63,8 +64,13 @@ const Detail = ({ route, navigation }) => {
                 maxStars={5}
                 starSize={30}
                 rating={movieDetail.vote_average / 2}
-                fullStarColor ={ 'gold'}
+                fullStarColor={"gold"}
               />
+              <Text style={styles.overview}>{movieDetail.overview}</Text>
+              <Text style={styles.release}>
+                {"Date de sortie :" +
+                  dateFormat(movieDetail.release_date, "dS mmmm, yyyy")}
+              </Text>
             </View>
           </ScrollView>
         </View>
@@ -96,6 +102,12 @@ const styles = StyleSheet.create({
   },
   genre: {
     marginRight: 10,
+    fontWeight: "bold",
+  },
+  overview: {
+    padding: 15,
+  },
+  release: {
     fontWeight: "bold",
   },
 });
