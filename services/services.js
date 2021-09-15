@@ -35,3 +35,12 @@ export const getDocumentaryMovies = async () => {
   );
   return resp.data.results;
 };
+
+// Get Movie by ID
+
+export const getMovie = async (id) => {
+  const resp = await axios.get(
+    `${apiUrl}/movie/${id}?${apiKey}`
+  );
+  return resp.data
+}
