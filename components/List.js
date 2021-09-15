@@ -1,24 +1,33 @@
 import React from "react";
-import { View, Text, FlatList, StyleSheet, Dimensions } from "react-native";
-
+import { View, Text, FlatList, StyleSheet } from "react-native";
+import Card from "./Card";
 class List extends React.PureComponent {
   render() {
-    const { title, content } = this.props;
+    const {title, content} = this.props;
     return (
-      <View>
+      <View style={styles.list}>
         <View>
-          <Text>{title}</Text>
+          <Text style={styles.text}>{title}</Text>
         </View>
         <View>
           <FlatList
             data={content}
             horizontal={true}
-            renderItem={({ item }) => <Text>{item.title}</Text>}
-          ></FlatList>
+            renderItem={({item}) => <Card item={item} />}></FlatList>
         </View>
       </View>
     );
   }
 }
+const styles = StyleSheet.create({
+  list: {
+    marginTop: 25,
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: "bold",
+    paddingBottom: 20,
+  },
+});
 
 export default List;
